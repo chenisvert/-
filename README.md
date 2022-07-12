@@ -6,13 +6,13 @@
 #### 软件架构
 软件架构说明:
 
-后端：
+后端
 Mysql
 redis
 springboot + mybatis-plus
 nginx
 
-前端:
+前端
 vue+jquery
 
 
@@ -36,3 +36,5 @@ vue+jquery
 3.  提交代码
 4.  新建 Pull Request
 
+
+本项目把前台登录的手机号验证改成了邮箱验证
