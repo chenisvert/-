@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "mybatis-plus.spring.mail.username",
+      "type": "java.lang.String",
+      "description": "Description for mybatis-plus.spring.mail.username."
+    },
+    {
+      "name": "mybatis-plus.spring.mail.password",
+      "type": "java.lang.String",
+      "description": "Description for mybatis-plus.spring.mail.password."
+    }
+  ] }
