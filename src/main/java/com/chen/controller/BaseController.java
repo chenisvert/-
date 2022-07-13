@@ -4,9 +4,7 @@ package com.chen.controller;
 import com.chen.service.*;
 
 
-
-
-
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +39,10 @@ public class BaseController {
 
 
     @Resource
+    protected RedisTemplate redisTemplate;
+
+
+    @Resource
     protected EmployeeService employeeService;
 
     @Resource
@@ -67,6 +69,7 @@ public class BaseController {
 
     @Resource
     protected OrdersService ordersService;
+
 
 
 

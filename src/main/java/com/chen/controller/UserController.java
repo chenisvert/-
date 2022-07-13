@@ -1,5 +1,6 @@
 package com.chen.controller;
 
+import ch.qos.logback.core.util.TimeUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.chen.common.BaseContext;
 import com.chen.common.R;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @RestController
@@ -42,11 +44,13 @@ public class UserController extends BaseController{
             //生成随机的4位验证码
             String code = ValidateCodeUtils.generateValidateCode(4).toString();
             log.info("code={}",code);
-            userService.sendMsg(phone,"【瑞吉外卖】 登录验证码","您的验证码："+code);
+            userService.sendMsg(phone,"【瑞吉外卖】 登录验证码","您的验证码："+code+"<br>"+"有效期为5分钟");
 
             //需要将生成的验证码保存到Session
-            session.setAttribute(phone,code);
+//            session.setAttribute(phone,code);
 
+            //生成的验证码放入redis缓存中。有效期5分钟
+            redisTemplate.opsForValue().set(phone,code,5, TimeUnit.MINUTES);
             return R.success("验证码发送成功");
         }
 
@@ -64,7 +68,9 @@ public class UserController extends BaseController{
         //获取验证码
         String code = map.get("code").toString();
         //获取session保存的验证码
-        Object codeSession = session.getAttribute(email);
+//        Object codeSession = session.getAttribute(email);
+        Object codeSession = redisTemplate.opsForValue().get(email);
+
 
         if (codeSession != null &&  codeSession.equals(code)){
             //判断当前邮箱是否为新用户，如果是就注册
@@ -78,6 +84,7 @@ public class UserController extends BaseController{
                  userService.save(user);
             }
             session.setAttribute("user", user.getId());
+            redisTemplate.delete(email);
             return   R.success(user);
 
 

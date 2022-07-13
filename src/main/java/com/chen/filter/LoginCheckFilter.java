@@ -45,9 +45,11 @@ public class LoginCheckFilter implements Filter{
                 "/dish/**",
                 "/user/sendMsg",
                 "/user/login",
-                "/category/**",
-                "/shoppingCart/**"
 
+                "/doc.html",
+                "/webjars/**",
+                "/swagger-resources",
+                "/v2/api-docs"
         };
 
 
