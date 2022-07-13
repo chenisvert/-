@@ -70,6 +70,15 @@ public class BaseController {
     @Resource
     protected OrdersService ordersService;
 
+    @Resource
+    protected AddressBookService addressBookService;
+
+    @Resource
+    protected OrderDetailService orderDetailService;
+
+
+
+
 
 
 

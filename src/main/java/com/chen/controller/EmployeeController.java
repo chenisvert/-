@@ -43,7 +43,7 @@ public class EmployeeController extends BaseController {
         LambdaQueryWrapper<Employee> queryWrapper = new LambdaQueryWrapper<>();
         //添加查询条件
         queryWrapper.eq(Employee::getUsername,employee.getUsername());
-        //getOne 查询唯一的数据
+        //// 需要注意用户名是唯一的，所以需要使用getOne
         Employee emp = employeeService.getOne(queryWrapper);
 
         //没有查询用户名到返回登录失败
@@ -60,7 +60,7 @@ public class EmployeeController extends BaseController {
             return R.error("账号已禁用");
         }
 
-        //登录成功
+        //登录成功，将员工id存入Session并返回登录成功结果
         session.setAttribute("employee",emp.getId());
         //将登录id填入ThreadLocal
         BaseContext.setCurrentId(emp.getId());
@@ -68,7 +68,7 @@ public class EmployeeController extends BaseController {
     }
 
     /*
-    * 后台用户退出
+    * 后台员工退出
     * */
     @RequestMapping("/logout")
     public R<String> logout(){
