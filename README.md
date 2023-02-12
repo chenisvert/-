@@ -3,8 +3,14 @@
 #### 介绍
 黑马瑞吉外卖项目
 
+### 项目图片
+后台管理
+[![pS5JDM9.jpg](https://s1.ax1x.com/2023/02/12/pS5JDM9.jpg)](https://imgse.com/i/pS5JDM9)
+前台
+[![pS5JgIK.jpg](https://s1.ax1x.com/2023/02/12/pS5JgIK.jpg)](https://imgse.com/i/pS5JgIK)
+
 #### 软件架构
-软件架构说明:
+软件架构说明: 
 
 后端
 Mysql
@@ -31,12 +37,7 @@ ajax
 2.  修改配置文件中的redis配置
 3.  修改配置文件中的邮件配置
 
-#### 参与贡献
 
-1.  Fork 本仓库
-2.  新建 guest_rjwm 分支
-3.  提交代码
-4.  新建 Pull Request
 
 ### 功能介绍
 本项目把前台登录的手机号验证改成了邮箱验证！
